@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <select name="" id=""></select>
-    
+    <h1>Pokemon</h1>
+    <div class="pokedex-container">
+
+        <div class="pokemon-select-container1">
+            <select id="pokemon-select">
+                <option value="">Välj en Pokemon</option>
+            </select>
+            <button id="showPokemon">Visa Pokémon</button>
+        </div>
+        
+    </div>
+    <div id="pokemon-details">
+        <h2 id="pokemon-name"></h2>
+        <img id="pokemon-image" src="" alt="Pokemon Image">
+        <p id="pokemon-types"></p>
+        <p id="pokemon-weight"></p>
+        <p id="pokemon-height"></p>
+        <p id="pokemon-stats"></p>
+    </div>
 </body>
 </html>

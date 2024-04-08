@@ -1,0 +1,16 @@
+.pokedex-container{
+    display: flex;
+    justify-content: space-between;
+    border: solid black;
+    padding: 100px;
+    
+}
+.pokemon-select-container1{
+    flex-direction: column;
+    border: solid black;
+    padding: 10px;
+
+}
+#pokemon-details {
+    display: none;
+}
