@@ -1,16 +1,25 @@
 h1{
     text-align: center;
+    font-family: sans-serif;
+}
+h2{
+    text-align: center;
+    font-family: sans-serif;
 }
 .pokedex-container{
     display: flex;
     justify-content: space-between;
     border: solid black;
+    
     padding: 100px;
+    font-family: sans-serif;
     
 }
 .pokemon-select-container1{
     flex-direction: column;
     border: solid black;
+    padding: 10px;
+    
     padding: 10px;
 }
 .pokemon-select-container2{
@@ -24,8 +33,12 @@ h1{
 }
 #pokemon-details {
     display: none;
+    font-family: sans-serif;
+    text-align: center;
 }
 
 #pokemon-details-2{
     display: none;
+    font-family: sans-serif;
+    text-align: center;
 }
