@@ -4,7 +4,7 @@ const comparePokemons = document.querySelector("#comparePokemons");
 let battleText = document.querySelector(".battle-text");
 let pokemon1 = null;
 let pokemon2 = null;
-// Anropar en asyncron funktion för att hämta information 
+// Anropar en asyncron funktion för att hämta information från APIet
 async function fetchPokemonList() {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
     const data = await response.json();
@@ -42,11 +42,10 @@ function displayPokemonDetails(pokemon) {
     document.getElementById('pokemon-height').textContent = `Height: ${pokemon.height}`;
     
     
-    // const stats = pokemon.stats.map(stat => `${stat.stat.name}: ${parseInt(stat.base_stat)}`).join(', ');
-    // document.getElementById('pokemon-stats').textContent = `Stats: ${stats}`;
+    
 
     const statsList = document.getElementById('pokemon-stats');
-    statsList.innerHTML = ''; // Rensa innehållet för att undvika dubbletter
+    statsList.innerHTML = ''; 
     const stats = pokemon.stats.map(stat => `<li>${stat.stat.name}: ${parseInt(stat.base_stat)}</li>`).join('');
     statsList.innerHTML = `<ul>${stats}</ul>`;
 
@@ -91,7 +90,7 @@ showPokemonBtn.addEventListener('click', () => {
 
 });
 
-
+// här upprepar jag hela koden igen för dropdown 2 ända till rad 161
 
 async function populatePokemonDropdown2() {
     const pokemonList = await fetchPokemonList();
@@ -119,10 +118,9 @@ function displayPokemonDetails2(pokemon) {
     document.getElementById('pokemon-height-2').textContent = `Height: ${pokemon.height}`;
     
    
-    // const stats = pokemon.stats.map(stat => `${stat.stat.name}: ${parseInt(stat.base_stat)}`).join(', ');
-    // document.getElementById('pokemon-stats-2').textContent = `Stats: ${stats}`;
+    
     const statsList = document.getElementById('pokemon-stats-2');
-    statsList.innerHTML = ''; // Rensa innehållet för att undvika dubbletter
+    statsList.innerHTML = ''; 
     const stats = pokemon.stats.map(stat => `<li>${stat.stat.name}: ${parseInt(stat.base_stat)}</li>`).join('');
     statsList.innerHTML = `<ul>${stats}</ul>`;
 
@@ -164,6 +162,8 @@ showPokemonBtn2.addEventListener('click', () => {
 
 });
 
+//klass för pokemonen
+
 class Pokemon{
     constructor(name, type, weight, height, stats){
         this.name = name;
@@ -200,6 +200,7 @@ class Pokemon{
             allPokeStats2 += pokemon2.stats[stat]
         });
         console.log(allPokeStats2);
+        
         //jämför height
         if (pokemon1.height > pokemon2.height) {
             firstPokemon++; 
@@ -220,6 +221,10 @@ class Pokemon{
         }
         else if (pokemon1.height === pokemon2.height) {
             battleText.innerHTML = `${pokemon2.name} Is equally tall as ${pokemon1.name}!<br>`
+            document.getElementById(`pokemon-height`).classList.remove("lighter");
+            document.getElementById(`pokemon-height-2`).classList.remove("heavier");
+            document.getElementById(`pokemon-height`).classList.remove("heavier");
+            document.getElementById(`pokemon-height-2`).classList.remove("lighter");
 
         }
 
@@ -245,13 +250,17 @@ class Pokemon{
         }
         else if (pokemon1.weight === pokemon2.weight){
             battleText.innerHTML = `${pokemon1.name} is equally heavy as ${pokemon2.name}! <br> `;
+            document.getElementById(`pokemon-weight`).classList.remove("heavier");
+            document.getElementById(`pokemon-weight-2`).classList.remove("lighter");
+            document.getElementById(`pokemon-weight-2`).classList.remove("heavier");
+            document.getElementById(`pokemon-weight`).classList.remove("lighter");
         }
 
         //jämför stats
 
         if (allPokeStats1 > allPokeStats2) {
             firstPokemon++;
-            battleText.innerHTML = `${pokemon1.name} has higher stats than ${pokemon2.name}!<br>`;
+            battleText.innerHTML = `${pokemon1.name} has higher total stats than ${pokemon2.name}!<br>`;
             document.querySelector(`#pokemon-stats`).classList.add("green");
             document.querySelector(`#pokemon-stats`).classList.remove("red");
             document.querySelector(`#pokemon-stats-2`).classList.add("red");
@@ -260,7 +269,7 @@ class Pokemon{
 
         } else if(allPokeStats2 > allPokeStats1) {
             secondPokemon++;
-            battleText.innerHTML = `${pokemon2} has higher stats than ${pokemon1.name}!<br>`;
+            battleText.innerHTML = `${pokemon2} has higher total stats than ${pokemon1.name}!<br>`;
             document.querySelector(`#pokemon-stats-2`).classList.add("green");
             document.querySelector(`#pokemon-stats`).classList.remove("green");
             document.querySelector(`#pokemon-stats`).classList.add("red");
@@ -269,6 +278,10 @@ class Pokemon{
         }
         else if(allPokeStats1 === allPokeStats2){
             battleText.innerHTML = `${pokemon1.name} has the same stats as ${pokemon2.name}!<br>`
+            document.querySelector(`#pokemon-stats-2`).classList.remove("red");
+            document.querySelector(`#pokemon-stats`).classList.remove("green");
+            document.querySelector(`#pokemon-stats-2`).classList.remove("green");
+            document.querySelector(`#pokemon-stats`).classList.remove("red");
             
         }
 
